@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body style="margin:0; height:100vh; background:#000;">
+<script>
+  const socket = new WebSocket('ws://192.168.15.4:8080');
+  socket.onopen = () => console.log('WebSocket connected');
+
+  document.addEventListener('touchmove', (e) => {
+    for(let touch of e.touches) {
+      const data = { x: touch.clientX, y: touch.clientY };
+      socket.send(JSON.stringify(data));
+    }
+  });
+</script>
+</body>
+</html>
